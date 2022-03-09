@@ -1,2 +1,2 @@
-# open-balena-admin-helm
-Open Balena Admin Helm Charts
+# open-balena-admin
+Open Balena Admin
