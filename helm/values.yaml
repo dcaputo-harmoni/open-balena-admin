@@ -1,0 +1,38 @@
+global:
+  hostname:
+admin:
+  replicas: 1
+  image:
+    repository: dcaputo-harmoni/open-balena-admin-ui
+    tag: latest
+    pullPolicy: Always
+remote:
+  replicas: 1
+  image:
+    repository: dcaputo-harmoni/open-balena-remote
+    tag: latest
+    pullPolicy: Always
+postgrest:
+  replicas: 1
+  image:
+    repository: postgrest/postgrest
+    tag: latest
+    pullPolicy: Always
+  dbURI:
+  dbSchema:
+  dbAnonRole:
+haproxy:
+  controller:
+    ingressClass: "open-balena-admin-haproxy"
+    ingressClassResource:
+      enabled: true
+    tcp:
+      10001: {{ .Release.Namespace }}/remote:10001:PROXY-V2::{{ .Release.Namespace }}/remote-tls
+      10002: {{ .Release.Namespace }}/remote:10002:PROXY-V2::{{ .Release.Namespace }}/remote-tls
+      10003: {{ .Release.Namespace }}/remote:10003:PROXY-V2::{{ .Release.Namespace }}/remote-tls
+      10004: {{ .Release.Namespace }}/remote:10004:PROXY-V2::{{ .Release.Namespace }}/remote-tls
+      10005: {{ .Release.Namespace }}/remote:10005:PROXY-V2::{{ .Release.Namespace }}/remote-tls
+      10006: {{ .Release.Namespace }}/remote:10006:PROXY-V2::{{ .Release.Namespace }}/remote-tls
+      10007: {{ .Release.Namespace }}/remote:10007:PROXY-V2::{{ .Release.Namespace }}/remote-tls
+      10008: {{ .Release.Namespace }}/remote:10008:PROXY-V2::{{ .Release.Namespace }}/remote-tls
+      10009: {{ .Release.Namespace }}/remote:10009:PROXY-V2::{{ .Release.Namespace }}/remote-tls

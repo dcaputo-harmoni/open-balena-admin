@@ -1,0 +1,70 @@
+version: "2.0"
+
+services:
+  admin-ui:
+    extends:
+      file: ./common.yml
+      service: component
+    image: harmonidcaputo/open-balena-admin-ui:${OPENBALENA_ADMIN_UI_VERSION_TAG}
+    depends_on:
+      - postgrest
+      - remote
+    environment:
+      PORT: 8080
+      REACT_APP_POSTGREST_URL: http://${OPENBALENA_POSTGREST_HOST_NAME}:3000
+      REACT_APP_OPEN_BALENA_API_URL: https://api.${OPENBALENA_HOST_NAME}
+    ports:
+      - "8080:8080"
+    networks:
+      - openbalena_default
+    networks:
+      openbalena_default:
+        aliases:
+          - admin.${OPENBALENA_HOST_NAME}
+
+  remote:
+    extends:
+      file: ./common.yml
+      service: component
+    image: harmonidcaputo/open-balena-remote:${OPENBALENA_REMOTE_VERSION_TAG}
+    environment:
+      BALENARC_BALENA_URL: ${OPENBALENA_HOST_NAME}
+    ports:
+      - "10000:10000"
+      - "10001:10001"
+      - "10002:10002"
+      - "10003:10003"
+      - "10004:10004"
+      - "10005:10005"
+      - "10006:10006"
+      - "10007:10007"
+      - "10008:10008"
+      - "10009:10009"
+    networks:
+      - openbalena_default
+    networks:
+      openbalena_default:
+        aliases:
+          - remote.${OPENBALENA_HOST_NAME}
+
+  postgrest:
+    extends:
+      file: ./common.yml
+      service: component
+    image: postgrest/postgrest:${OPENBALENA_POSTGREST_VERSION_TAG}
+    environment:
+      PGRST_DB_URI: postgres://${OPENBALENA_DB_USER}:${OPENBALENA_DB_PASSWORD}@db.${OPENBALENA_HOST_NAME}:${OPENBALENA_DB_PORT}/resin
+      PGRST_DB_SCHEMA: public
+      PGRST_DB_ANON_ROLE: ${OPENBALENA_DB_USER}
+    ports:
+      - "3000:3000"
+    networks:
+      - openbalena_default
+    networks:
+      openbalena_default:
+        aliases:
+          - postgrest.${OPENBALENA_HOST_NAME}
+
+networks:
+  openbalena_default:
+    external: true

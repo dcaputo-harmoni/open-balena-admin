@@ -1,0 +1,15 @@
+apiVersion: v2
+name: open-balena-admin
+description: Openbalena Administration Interface
+type: application
+version: 1.0.0
+appVersion: v1.0.0
+maintainers:
+- name: dcaputo
+  email: dcaputo@harmoni.io
+
+dependencies:
+- name: haproxy-ingress
+  version: 0.13.6
+  alias: haproxy
+  repository: "https://haproxy-ingress.github.io/charts"

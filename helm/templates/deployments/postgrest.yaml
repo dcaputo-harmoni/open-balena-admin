@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgrest
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/component: postgrest
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: postgrest
+  replicas: {{ .Values.postgrest.replicas }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: postgrest
+    spec:
+      containers:
+      - name: postgrest
+        image: {{ .Values.postgrest.image.repository }}:{{ .Values.postgrest.image.tag }}
+        imagePullPolicy: {{ .Values.postgrest.image.pullPolicy }}
+        ports:
+          - name: http
+            containerPort: 3000
+        env:
+        - name: PGRST_DB_URI
+          value: {{ .Values.postgrest.dbURI }}
+        - name: PGRST_DB_SCHEMA
+          value: {{ .Values.postgrest.dbSchema }}
+        - name: PGRST_DB_ANON_ROLE
+          value: {{ .Values.postgrest.dbAnonRole }}
+        securityContext:
+          privileged: true
+          capabilities:
+            add: ["SYS_ADMIN", "SYS_RESOURCE"]

@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: open-balena-remote-http
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    kubernetes.io/ingress.class: open-balena-admin-haproxy
+    cert-manager.io/issuer: open-balena-admin-certificate-issuer
+spec:
+  tls:
+  - hosts:
+    - remote.{{ .Values.remote.hostname }}
+    secretName: open-balena-remote-tls
+  rules:
+  - host: remote.{{ .Values.remote.hostname }}
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: remote
+            port:
+              number: 443

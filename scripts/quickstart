@@ -1,0 +1,63 @@
+#!/bin/bash -e
+
+BOLD=`tput bold`
+RESET=`tput sgr0`
+
+DIR="$(dirname "$0")"
+BASE_DIR="${DIR}/.."
+CONFIG_DIR="${BASE_DIR}/config"
+
+DOMAIN=openbalena.local
+DB_USER=docker
+DB_PASSWORD=docker
+DB_PORT=5432
+POSTGREST_HOST_NAME=postgrest.openbalena.local
+POSTGREST_PORT=6001
+
+usage() {
+  echo "usage: $0 [-h] [-d DOMAIN] [-U USERNAME] [-P PASSWORD] [-p PORT] [-h PG_HOST]"
+  echo
+  echo "  -d DOMAIN    the domain that your openbalena instance was installed on. Default is 'openbalena.local'"
+  echo "  -U USERNAME  the username used to log in to your openbalena db instance.  Default is 'docker'"
+  echo "  -P PASSWORD  the password used to log in to your openbalena db instance.  Default is 'docker'"
+  echo "  -p PORT      the port of your openbalena db instance.  Default is '5432'"
+  echo "  -h PG_HOST   the host name / IP address of your postgrest instance.  Default is 'postgrest.openbalena.local'"
+  echo
+}
+
+show_help=false
+while getopts ":hxdUPp:" opt; do
+  case "${opt}" in
+    h) show_help=true;;
+    x) set -x;;
+    d) DOMAIN="${OPTARG}";;
+    U) DB_USER="${OPTARG}";;
+    P) DB_PASSWORD="${OPTARG}";;
+    p) DB_PORT="${OPTARG}";;
+    h) POSTGREST_HOST_NAME="${OPTARG}";;
+    *)
+      echo "Invalid argument: -${OPTARG}"
+      usage
+      exit 1
+      ;;
+  esac
+done
+shift $((OPTIND-1))
+
+if [ "$show_help" = "true" ]; then
+  usage
+  exit 1
+fi
+
+echo_bold() {
+  echo "${BOLD}${@}${RESET}"
+}
+
+echo_bold "==> Creating new configuration at: $CONFIG_DIR"
+mkdir -p "$CONFIG_DIR"
+
+echo_bold "==> Setting up environment..."
+cat >"${CONFIG_DIR}/activate" <(source "${DIR}/make-env")
+
+echo_bold "==> Adding default compose file..."
+cp "${BASE_DIR}/compose/template.yml" "${CONFIG_DIR}/docker-compose.yml"

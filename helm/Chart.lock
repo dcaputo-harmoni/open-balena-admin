@@ -1,0 +1,6 @@
+dependencies:
+- name: haproxy-ingress
+  repository: https://haproxy-ingress.github.io/charts
+  version: 0.13.6
+digest: sha256:ad54e252c6240e0ccb822ce967a5b6b94b006ea041614fa77b117303fbf60e80
+generated: "2022-03-04T16:52:27.4754715-05:00"

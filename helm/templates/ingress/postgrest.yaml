@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: open-balena-postgrest-http
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    kubernetes.io/ingress.class: open-balena-admin-haproxy
+    cert-manager.io/issuer: open-balena-admin-certificate-issuer
+spec:
+  tls:
+  - hosts:
+    - postgrest.{{ .Values.remote.hostname }}
+    secretName: open-balena-postgrest-tls
+  rules:
+  - host: postgrest.{{ .Values.remote.hostname }}
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: postgrest
+            port:
+              number: 443
