@@ -9,11 +9,11 @@ usage() {
   echo "  DB_USER                Openbalena DB username"
   echo "  DB_PASSWORD            Openbalena DB password"
   echo "  DB_PORT                Openbalena DB port"
-  echo "  POSTGREST_HOST_NAME    Postgrest host name"
+  echo "  JWT_SECRET             Openbalena JWT secret"
   echo
 }
 
-for var in DOMAIN DB_USER DB_PASSWORD DB_PORT POSTGREST_HOST_NAME; do
+for var in DOMAIN DB_USER DB_PASSWORD DB_PORT JWT_SECRET; do
   if [ -z "${!var-}" ]; then
     usage
     exit 1
@@ -25,5 +25,5 @@ export OPENBALENA_HOST_NAME=$DOMAIN
 export OPENBALENA_DB_USER=$DB_USER
 export OPENBALENA_DB_PASSWORD=$DB_PASSWORD
 export OPENBALENA_DB_PORT=$DB_PORT
-export OPENBALENA_POSTGREST_HOST_NAME=$POSTGREST_HOST_NAME
+export OPENBALENA_JWT_SECRET=$JWT_SECRET
 STR

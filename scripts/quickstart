@@ -11,22 +11,20 @@ DOMAIN=openbalena.local
 DB_USER=docker
 DB_PASSWORD=docker
 DB_PORT=5432
-POSTGREST_HOST_NAME=postgrest.openbalena.local
-POSTGREST_PORT=6001
 
 usage() {
-  echo "usage: $0 [-h] [-d DOMAIN] [-U USERNAME] [-P PASSWORD] [-p PORT] [-h PG_HOST]"
+  echo "usage: $0 [-h] [-d DOMAIN] [-U USERNAME] [-P PASSWORD] [-p PORT] -j JWT_SECRET"
   echo
-  echo "  -d DOMAIN    the domain that your openbalena instance was installed on. Default is 'openbalena.local'"
-  echo "  -U USERNAME  the username used to log in to your openbalena db instance.  Default is 'docker'"
-  echo "  -P PASSWORD  the password used to log in to your openbalena db instance.  Default is 'docker'"
-  echo "  -p PORT      the port of your openbalena db instance.  Default is '5432'"
-  echo "  -h PG_HOST   the host name / IP address of your postgrest instance.  Default is 'postgrest.openbalena.local'"
+  echo "  -d DOMAIN     the domain that your openbalena instance was installed on. Default is 'openbalena.local'"
+  echo "  -U USERNAME   the username used to log in to your openbalena db instance.  Default is 'docker'"
+  echo "  -P PASSWORD   the password used to log in to your openbalena db instance.  Default is 'docker'"
+  echo "  -p PORT       the port of your openbalena db instance.  Default is '5432'"
+  echo "  -j JWT_SECRET the JWT secret of your openbalena instance"
   echo
 }
 
 show_help=false
-while getopts ":hxdUPp:" opt; do
+while getopts ":hxdUPp:j:" opt; do
   case "${opt}" in
     h) show_help=true;;
     x) set -x;;
@@ -34,7 +32,7 @@ while getopts ":hxdUPp:" opt; do
     U) DB_USER="${OPTARG}";;
     P) DB_PASSWORD="${OPTARG}";;
     p) DB_PORT="${OPTARG}";;
-    h) POSTGREST_HOST_NAME="${OPTARG}";;
+    j) JWT_SECRET="${OPTARG}";;
     *)
       echo "Invalid argument: -${OPTARG}"
       usage

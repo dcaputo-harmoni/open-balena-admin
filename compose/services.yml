@@ -11,10 +11,14 @@ services:
       - remote
     environment:
       PORT: 8080
-      REACT_APP_POSTGREST_URL: http://${OPENBALENA_POSTGREST_HOST_NAME}:3000
+      REACT_APP_POSTGREST_PROXY_URL: http://admin.${OPENBALENA_HOST_NAME}:8000
       REACT_APP_OPEN_BALENA_API_URL: https://api.${OPENBALENA_HOST_NAME}
+      REACT_APP_OPEN_BALENA_REMOTE_URL: http://remote.${OPENBALENA_HOST_NAME}:10000
+      OPENBALENA_JWT_SECRET: ${OPENBALENA_JWT_SECRET}
+      POSTGREST_URL: http://postgrest.${OPENBALENA_HOST_NAME}:3000
     ports:
       - "8080:8080"
+      - "8000:8000"
     networks:
       - openbalena_default
     networks:
@@ -55,9 +59,8 @@ services:
     environment:
       PGRST_DB_URI: postgres://${OPENBALENA_DB_USER}:${OPENBALENA_DB_PASSWORD}@db.${OPENBALENA_HOST_NAME}:${OPENBALENA_DB_PORT}/resin
       PGRST_DB_SCHEMA: public
-      PGRST_DB_ANON_ROLE: ${OPENBALENA_DB_USER}
-    ports:
-      - "3000:3000"
+      PGRST_DB_ANON_ROLE: anon
+      PGRST_JWT_SECRET: ${OPENBALENA_JWT_SECRET}
     networks:
       - openbalena_default
     networks:
