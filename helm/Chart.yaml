@@ -1,5 +1,5 @@
 apiVersion: v2
-name: open-balena-admin
+name: openbalena-admin
 description: Openbalena Administration Interface
 type: application
 version: 1.0.0

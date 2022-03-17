@@ -1,40 +1,81 @@
 global:
   hostname:
-admin:
+
+ingress:
+  annotations:
+    kubernetes.io/ingress.class: openbalena-admin-haproxy
+  http:
+    annotations: {}
+
+ui:
   replicas: 1
+  labels: {}
+  annotations: {}
+  affinity: {}
+  resources: {}
+  nodeSelector: {}
+  service:
+    labels: {}
+    annotations: {}
+    externalIPs: []
+  sentry-dsn: ""
   image:
-    repository: dcaputo-harmoni/open-balena-admin-ui
+    repository: harmonidcaputo/open-balena-ui
     tag: latest
     pullPolicy: Always
   apiVersion: 
+
 remote:
   replicas: 1
+  labels: {}
+  annotations: {}
+  affinity: {}
+  resources: {}
+  nodeSelector: {}
+  service:
+    labels: {}
+    annotations: {}
+    externalIPs: []
+  sentry-dsn: ""
   image:
-    repository: dcaputo-harmoni/open-balena-remote
+    repository: harmonidcaputo/open-balena-remote
     tag: latest
     pullPolicy: Always
+
 postgrest:
   replicas: 1
+  labels: {}
+  annotations: {}
+  affinity: {}
+  resources: {}
+  nodeSelector: {}
+  service:
+    labels: {}
+    annotations: {}
+    externalIPs: []
+  sentry-dsn: ""
   image:
-    repository: dcaputo-harmoni/open-balena-postgrest
+    repository: harmonidcaputo/open-balena-postgrest
     tag: latest
     pullPolicy: Always
-  dbHost: 
-  dbUser:
-  dbPassword:
-  dbPort:
+  dbHost: openbalena-db.openbalena
+  dbUser: docker
+  dbPassword: docker
+  dbPort: 5432
+  jwtSecret: 
+
 haproxy:
   controller:
-    ingressClass: "open-balena-admin-haproxy"
+    ingressClass: openbalena-admin-haproxy
     ingressClassResource:
       enabled: true
     tcp:
-      10001: {{ .Release.Namespace }}/remote:10001:PROXY-V2::{{ .Release.Namespace }}/remote-tls
-      10002: {{ .Release.Namespace }}/remote:10002:PROXY-V2::{{ .Release.Namespace }}/remote-tls
-      10003: {{ .Release.Namespace }}/remote:10003:PROXY-V2::{{ .Release.Namespace }}/remote-tls
-      10004: {{ .Release.Namespace }}/remote:10004:PROXY-V2::{{ .Release.Namespace }}/remote-tls
-      10005: {{ .Release.Namespace }}/remote:10005:PROXY-V2::{{ .Release.Namespace }}/remote-tls
-      10006: {{ .Release.Namespace }}/remote:10006:PROXY-V2::{{ .Release.Namespace }}/remote-tls
-      10007: {{ .Release.Namespace }}/remote:10007:PROXY-V2::{{ .Release.Namespace }}/remote-tls
-      10008: {{ .Release.Namespace }}/remote:10008:PROXY-V2::{{ .Release.Namespace }}/remote-tls
-      10009: {{ .Release.Namespace }}/remote:10009:PROXY-V2::{{ .Release.Namespace }}/remote-tls
+      10001: openbalena-admin/remote:10001:PROXY-V2::openbalena-admin/openbalena-admin-remote-tls
+      10002: openbalena-admin/remote:10002:PROXY-V2::openbalena-admin/openbalena-admin-remote-tls
+      10003: openbalena-admin/remote:10003:PROXY-V2::openbalena-admin/openbalena-admin-remote-tls
+      10004: openbalena-admin/remote:10004:PROXY-V2::openbalena-admin/openbalena-admin-remote-tls
+      10005: openbalena-admin/remote:10005:PROXY-V2::openbalena-admin/openbalena-admin-remote-tls
+      10006: openbalena-admin/remote:10006:PROXY-V2::openbalena-admin/openbalena-admin-remote-tls
+      10007: openbalena-admin/remote:10007:PROXY-V2::openbalena-admin/openbalena-admin-remote-tls
+      10008: openbalena-admin/remote:10008:PROXY-V2::openbalena-admin/openbalena-admin-remote-tls
+      10009: openbalena-admin/remote:10009:PROXY-V2::openbalena-admin/openbalena-admin-remote-tls

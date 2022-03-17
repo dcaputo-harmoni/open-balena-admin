@@ -1,20 +1,30 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: remote
+  name: {{ include "openbalena-admin.fullname" . }}-remote
   namespace: {{ .Release.Namespace }}
   labels:
+    {{- include "openbalena-admin.labels" . | nindent 4 }}
     app.kubernetes.io/component: remote
+
+    {{- with .Values.remote.service.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with .Values.remote.service.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   selector:
+    {{- include "openbalena-admin.selectorLabels" . | nindent 4 }}
     app.kubernetes.io/component: remote
+
+    {{- with .Values.remote.service.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
   ports:
   - port: 80
     name: http
-    protocol: TCP
-    targetPort: 10000
-  - port: 443
-    name: https
     protocol: TCP
     targetPort: 10000
   - port: 10001
@@ -53,3 +63,7 @@ spec:
     name: 10009-tcp
     protocol: TCP
     targetPort: 10009
+  {{- with .Values.remote.service.externalIPs }}
+  externalIPs:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}

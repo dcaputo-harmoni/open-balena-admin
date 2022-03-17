@@ -5,7 +5,7 @@ services:
     extends:
       file: ./common.yml
       service: component
-    image: harmonidcaputo/open-balena-admin-ui:${OPENBALENA_ADMIN_UI_VERSION_TAG}
+    image: harmonidcaputo/open-balena-ui:${OPENBALENA_ADMIN_UI_VERSION_TAG}
     depends_on:
       - postgrest
       - remote

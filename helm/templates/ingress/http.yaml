@@ -1,18 +1,25 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: open-balena-admin-http
+  name: {{ include "openbalena-admin.fullname" . }}
   namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "openbalena-admin.labels" . | nindent 4 }}
   annotations:
-    kubernetes.io/ingress.class: open-balena-admin-haproxy
-    cert-manager.io/issuer: open-balena-admin-certificate-issuer
+    {{- with .Values.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+    {{- with .Values.ingress.http.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+    cert-manager.io/issuer: openbalena-admin-certificate-issuer
 spec:
   tls:
   - hosts:
     - admin.{{ .Values.global.hostname }}
     - postgrest.{{ .Values.global.hostname }}
     - remote.{{ .Values.global.hostname }}
-    secretName: open-balena-admin-tls
+    secretName: {{ include "openbalena-admin.fullname" . }}-tls
   rules:
   - host: admin.{{ .Values.global.hostname }}
     http:
@@ -21,9 +28,9 @@ spec:
         path: "/"
         backend:
           service:
-            name: admin
+            name: {{ include "openbalena-admin.fullname" . }}-ui
             port:
-              number: 443
+              number: 80
   - host: postgrest.{{ .Values.global.hostname }}
     http:
       paths:
@@ -31,9 +38,9 @@ spec:
         path: "/"
         backend:
           service:
-            name: postgrest
+            name: {{ include "openbalena-admin.fullname" . }}-postgrest
             port:
-              number: 443
+              number: 80
   - host: remote.{{ .Values.global.hostname }}
     http:
       paths:
@@ -41,6 +48,6 @@ spec:
         path: "/"
         backend:
           service:
-            name: remote
+            name: {{ include "openbalena-admin.fullname" . }}-remote
             port:
-              number: 443
+              number: 80

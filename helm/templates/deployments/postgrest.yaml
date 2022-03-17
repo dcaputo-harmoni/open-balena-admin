@@ -1,33 +1,65 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgrest
+  name: {{ include "openbalena-admin.fullname" . }}-postgrest
   namespace: {{ .Release.Namespace }}
   labels:
+    {{- include "openbalena-admin.labels" . | nindent 4 }}
     app.kubernetes.io/component: postgrest
+
+    {{- with .Values.postgrest.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with .Values.postgrest.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
+  {{- with .Values.postgrest.affinity }}
+  affinity:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   selector:
     matchLabels:
+      {{- include "openbalena-admin.selectorLabels" . | nindent 6 }}
       app.kubernetes.io/component: postgrest
+
+      {{- with .Values.postgrest.labels }}
+      {{- toYaml . | nindent 6 }}
+      {{- end }}
   replicas: {{ .Values.postgrest.replicas }}
   template:
     metadata:
       labels:
+        {{- include "openbalena-admin.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: postgrest
+
+        {{- with .Values.postgrest.labels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
     spec:
       containers:
-      - name: postgrest
+      - name: {{ .Chart.Name }}-postgrest
         image: {{ .Values.postgrest.image.repository }}:{{ .Values.postgrest.image.tag }}
         imagePullPolicy: {{ .Values.postgrest.image.pullPolicy }}
+        {{- with .Values.postgrest.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
         ports:
           - name: http
             containerPort: 8000
+        securityContext:
+          privileged: true
+          capabilities:
+            add: ["SYS_ADMIN", "SYS_RESOURCE"]
         env:
         - name: PGRST_DB_URI
           value: postgres://{{ .Values.postgrest.dbUser }}:{{ .Values.postgrest.dbPassword }}@{{ .Values.postgrest.dbHost }}:{{ .Values.global.dbPort }}/resin
         - name: PGRST_JWT_SECRET
           value: {{ .Values.postgrest.jwtSecret }}
-        securityContext:
-          privileged: true
-          capabilities:
-            add: ["SYS_ADMIN", "SYS_RESOURCE"]
+
+      {{- with .Values.postgrest.nodeSelector  }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
