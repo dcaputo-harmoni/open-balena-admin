@@ -10,6 +10,8 @@ spec:
   tls:
   - hosts:
     - admin.{{ .Values.global.hostname }}
+    - postgrest.{{ .Values.global.hostname }}
+    - remote.{{ .Values.global.hostname }}
     secretName: open-balena-admin-tls
   rules:
   - host: admin.{{ .Values.global.hostname }}
@@ -20,5 +22,25 @@ spec:
         backend:
           service:
             name: admin
+            port:
+              number: 443
+  - host: postgrest.{{ .Values.global.hostname }}
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: postgrest
+            port:
+              number: 443
+  - host: remote.{{ .Values.global.hostname }}
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: remote
             port:
               number: 443
