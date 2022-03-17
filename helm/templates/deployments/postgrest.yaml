@@ -21,14 +21,12 @@ spec:
         imagePullPolicy: {{ .Values.postgrest.image.pullPolicy }}
         ports:
           - name: http
-            containerPort: 3000
+            containerPort: 8000
         env:
         - name: PGRST_DB_URI
-          value: {{ .Values.postgrest.dbURI }}
-        - name: PGRST_DB_SCHEMA
-          value: {{ .Values.postgrest.dbSchema }}
-        - name: PGRST_DB_ANON_ROLE
-          value: {{ .Values.postgrest.dbAnonRole }}
+          value: postgres://{{ .Values.postgrest.dbUser }}:{{ .Values.postgrest.dbPassword }}@{{ .Values.postgrest.dbHost }}:{{ .Values.global.dbPort }}/resin
+        - name: PGRST_JWT_SECRET
+          value: {{ .Values.postgrest.jwtSecret }}
         securityContext:
           privileged: true
           capabilities:

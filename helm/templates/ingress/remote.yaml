@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - remote.{{ .Values.remote.hostname }}
+    - remote.{{ .Values.global.hostname }}
     secretName: open-balena-remote-tls
   rules:
-  - host: remote.{{ .Values.remote.hostname }}
+  - host: remote.{{ .Values.global.hostname }}
     http:
       paths:
       - pathType: Prefix

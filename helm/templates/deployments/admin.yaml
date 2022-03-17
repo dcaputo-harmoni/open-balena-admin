@@ -23,12 +23,16 @@ spec:
           - name: http
             containerPort: 8080
         env:
-        - name: PGRST_DB_URI
-          value: {{ .Values.postgrest.dbURI }}
-        - name: PGRST_DB_SCHEMA
-          value: {{ .Values.postgrest.dbSchema }}
-        - name: PGRST_DB_ANON_ROLE
-          value: {{ .Values.postgrest.dbAnonRole }}
+        - name: PORT
+          value: 8080
+        - name: REACT_APP_OPEN_BALENA_POSTGREST_URL
+          value: http://postgrest.{{ .Values.global.hostname }}:8000
+        - name: REACT_APP_OPEN_BALENA_REMOTE_URL
+          value: http://remote.{{ .Values.global.hostname }}:10000
+        - name: REACT_APP_OPEN_BALENA_API_URL
+          value: https://api.{{ .Values.global.hostname }}
+        - name: REACT_APP_OPEN_BALENA_API_VERSION
+          value: {{ .Values.admin.apiVersion }}
         securityContext:
           privileged: true
           capabilities:

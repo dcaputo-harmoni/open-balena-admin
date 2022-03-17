@@ -42,7 +42,7 @@ spec:
             containerPort: 10007
         env:
         - name: BALENARC_BALENA_URL
-          value: {{ .Values.remote.hostname }}
+          value: {{ .Values.global.hostname }}
         securityContext:
           privileged: true
           capabilities:

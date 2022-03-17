@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - postgrest.{{ .Values.remote.hostname }}
+    - postgrest.{{ .Values.global.hostname }}
     secretName: open-balena-postgrest-tls
   rules:
-  - host: postgrest.{{ .Values.remote.hostname }}
+  - host: postgrest.{{ .Values.global.hostname }}
     http:
       paths:
       - pathType: Prefix

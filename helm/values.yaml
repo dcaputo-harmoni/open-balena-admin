@@ -6,6 +6,7 @@ admin:
     repository: dcaputo-harmoni/open-balena-admin-ui
     tag: latest
     pullPolicy: Always
+  apiVersion: 
 remote:
   replicas: 1
   image:
@@ -15,12 +16,13 @@ remote:
 postgrest:
   replicas: 1
   image:
-    repository: postgrest/postgrest
+    repository: dcaputo-harmoni/open-balena-postgrest
     tag: latest
     pullPolicy: Always
-  dbURI:
-  dbSchema:
-  dbAnonRole:
+  dbHost: 
+  dbUser:
+  dbPassword:
+  dbPort:
 haproxy:
   controller:
     ingressClass: "open-balena-admin-haproxy"
