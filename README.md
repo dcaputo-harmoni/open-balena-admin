@@ -12,7 +12,20 @@ The goal of this project is to provide the following areas of functionality to o
 
 ## Screenshots
 
+Login Screen:
 ![Login screen](/assets/screenshots/login.png "Login Screen")
+
+Dashboard:
+![Dashboard](/assets/screenshots/dashboard.png "Dashboard")
+
+Org Management:
+![Org Management](/assets/screenshots/orgs.png "Org Management")
+
+Fleet Management:
+![Fleet Management](/assets/screenshots/fleets.png "Fleet Management")
+
+Device Management:
+![Device Management](/assets/screenshots/devices.png "Device Management")
 
 ## Compatibility
 This project is compatible with `open-balena-api` v0.139.0 or newer, all the way up to the current builds (v0.190.0).  See [this project](https://github.com/dcaputo-harmoni/open-balena-helm) for a fork of bartversluijs' open-balena-helm project which has helm scripts to build a current version of `open-balena`.
