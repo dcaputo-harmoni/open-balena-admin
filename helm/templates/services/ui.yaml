@@ -26,7 +26,7 @@ spec:
   - port: 80
     name: http
     protocol: TCP
-    targetPort: 8080
+    targetPort: 443
   {{- with .Values.ui.service.externalIPs }}
   externalIPs:
     {{- toYaml . | nindent 4 }}

@@ -48,18 +48,18 @@ spec:
         {{- end }}
         ports:
           - name: http
-            containerPort: 8080
+            containerPort: 443
         securityContext:
           privileged: true
           capabilities:
             add: ["SYS_ADMIN", "SYS_RESOURCE"]
         env:
         - name: PORT
-          value: "8080"
+          value: "443"
         - name: REACT_APP_OPEN_BALENA_POSTGREST_URL
-          value: http://postgrest.{{ .Values.global.hostname }}:8000
+          value: https://postgrest.{{ .Values.global.hostname }}
         - name: REACT_APP_OPEN_BALENA_REMOTE_URL
-          value: http://remote.{{ .Values.global.hostname }}:10000
+          value: https://remote.{{ .Values.global.hostname }}
         - name: REACT_APP_OPEN_BALENA_API_URL
           value: https://api.{{ .Values.global.hostname }}
         - name: REACT_APP_OPEN_BALENA_API_VERSION
