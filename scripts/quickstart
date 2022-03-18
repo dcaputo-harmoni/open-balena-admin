@@ -44,6 +44,11 @@ while getopts ":hxdUPp:v:j:" opt; do
 done
 shift $((OPTIND-1))
 
+if [ -z "${VERSION}" ] || [ -z "${JWT_SECRET}" ]; then
+  usage
+  exit 1
+fi
+
 if [ "$show_help" = "true" ]; then
   usage
   exit 1
