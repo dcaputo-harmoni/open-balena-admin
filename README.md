@@ -10,6 +10,10 @@ The goal of this project is to provide the following areas of functionality to o
 - Support for creating and managing custom device types
 - Remote device diagnostics
 
+## Screenshots
+
+![Login screen](/assets/screenshots/login.png "Login Screen")
+
 ## Compatibility
 This project is compatible with `open-balena-api` v0.139.0 or newer, all the way up to the current builds (v0.190.0).  See [this project](https://github.com/dcaputo-harmoni/open-balena-helm) for a fork of bartversluijs' open-balena-helm project which has helm scripts to build a current version of `open-balena`.
 
