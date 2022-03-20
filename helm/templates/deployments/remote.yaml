@@ -65,6 +65,10 @@ spec:
             containerPort: 10006
           - name: 10007-tcp
             containerPort: 10007
+          - name: 10008-tcp
+            containerPort: 10008
+          - name: 10009-tcp
+            containerPort: 10009
         securityContext:
           privileged: true
           capabilities:

@@ -27,6 +27,10 @@ spec:
     name: http
     protocol: TCP
     targetPort: 10000
+  - port: 10000
+    name: 10000-tcp
+    protocol: TCP
+    targetPort: 10000
   - port: 10001
     name: 10001-tcp
     protocol: TCP

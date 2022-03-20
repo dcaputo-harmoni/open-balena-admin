@@ -70,12 +70,13 @@ haproxy:
     ingressClassResource:
       enabled: true
     tcp:
-      10001: openbalena-admin/remote:10001:PROXY-V2::openbalena-admin/openbalena-admin-remote-tls
-      10002: openbalena-admin/remote:10002:PROXY-V2::openbalena-admin/openbalena-admin-remote-tls
-      10003: openbalena-admin/remote:10003:PROXY-V2::openbalena-admin/openbalena-admin-remote-tls
-      10004: openbalena-admin/remote:10004:PROXY-V2::openbalena-admin/openbalena-admin-remote-tls
-      10005: openbalena-admin/remote:10005:PROXY-V2::openbalena-admin/openbalena-admin-remote-tls
-      10006: openbalena-admin/remote:10006:PROXY-V2::openbalena-admin/openbalena-admin-remote-tls
-      10007: openbalena-admin/remote:10007:PROXY-V2::openbalena-admin/openbalena-admin-remote-tls
-      10008: openbalena-admin/remote:10008:PROXY-V2::openbalena-admin/openbalena-admin-remote-tls
-      10009: openbalena-admin/remote:10009:PROXY-V2::openbalena-admin/openbalena-admin-remote-tls
+      10000: openbalena-admin/openbalena-admin-remote:10000:PROXY-V2::openbalena-admin/openbalena-admin-tls
+      10001: openbalena-admin/openbalena-admin-remote:10001:PROXY-V2::openbalena-admin/openbalena-admin-tls
+      10002: openbalena-admin/openbalena-admin-remote:10002:PROXY-V2::openbalena-admin/openbalena-admin-tls
+      10003: openbalena-admin/openbalena-admin-remote:10003:PROXY-V2::openbalena-admin/openbalena-admin-tls
+      10004: openbalena-admin/openbalena-admin-remote:10004:PROXY-V2::openbalena-admin/openbalena-admin-tls
+      10005: openbalena-admin/openbalena-admin-remote:10005:PROXY-V2::openbalena-admin/openbalena-admin-tls
+      10006: openbalena-admin/openbalena-admin-remote:10006:PROXY-V2::openbalena-admin/openbalena-admin-tls
+      10007: openbalena-admin/openbalena-admin-remote:10007:PROXY-V2::openbalena-admin/openbalena-admin-tls
+      10008: openbalena-admin/openbalena-admin-remote:10008:PROXY-V2::openbalena-admin/openbalena-admin-tls
+      10009: openbalena-admin/openbalena-admin-remote:10009:PROXY-V2::openbalena-admin/openbalena-admin-tls
