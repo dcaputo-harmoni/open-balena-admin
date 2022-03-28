@@ -4,10 +4,11 @@ Open source admin interface for [openbalena](https://github.com/balena-io/open-b
 
 ## Features
 The goal of this project is to provide the following areas of functionality to openbalena via a web interface:
-- Support for multiple organizations and users to openbalena
+- Support for multiple organizations and users in open-balena
 - Remote access to devices (ssh, vnc and http into host or containers)
 - Fleet / device management (create fleets, add devices, manage variables / tags / labels)
 - Support for creating and managing custom device types
+- Device management dashboard
 - Remote device diagnostics
 
 ## Screenshots
