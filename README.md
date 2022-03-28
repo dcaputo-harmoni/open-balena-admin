@@ -114,7 +114,6 @@ Helm charts are included in the `/helm` folder of this repository for K8S users,
 
 ## Limitations and Known Issues
 - User authorization is not implemented at the resource level
-- API key creation via web is not working
 
 ## Credits
 
