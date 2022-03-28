@@ -21,11 +21,26 @@ Dashboard:
 Org Management:
 ![Org Management](/assets/screenshots/orgs.png "Org Management")
 
+User Management:
+![User Management](/assets/screenshots/user.png "User Management")
+
 Fleet Management:
 ![Fleet Management](/assets/screenshots/fleets.png "Fleet Management")
 
 Device Management:
 ![Device Management](/assets/screenshots/devices.png "Device Management")
+
+Device Dashboard (Summary):
+![Device Dashboard (Summary)](/assets/screenshots/device_dashboard_1.png "Device Dashboard (Summary)")
+
+Device Dashboard (Logs):
+![Device Dashboard (Logs)](/assets/screenshots/device_dashboard_2.png "Device Dashboard (Logs)")
+
+Device Dashboard (Connect - SSH):
+![Device Dashboard (Connect - SSH)](/assets/screenshots/device_dashboard_3.png "Device Dashboard (Connect - SSH)")
+
+Device Dashboard (Connect - Web):
+![Device Dashboard (Connect - Web)](/assets/screenshots/device_dashboard_4.png "Device Dashboard (Connect - Web)")
 
 ## Compatibility
 This project is compatible with `open-balena-api` v0.139.0 or newer, all the way up to the current builds (v0.190.0).  See [this project](https://github.com/dcaputo-harmoni/open-balena-helm) for a fork of bartversluijs' open-balena-helm project which has helm scripts to build a current version of `open-balena`.
@@ -68,6 +83,7 @@ If running locally, edit `/etc/hosts` or `C:\Windows\System32\Drivers\etc\hosts`
 127.0.0.1 s3.openbalena.local
 127.0.0.1 tunnel.openbalena.local
 127.0.0.1 admin.openbalena.local
+127.0.0.1 dashboard.openbalena.local
 127.0.0.1 postgrest.openbalena.local
 127.0.0.1 remote.openbalena.local
 ```
@@ -85,7 +101,7 @@ open-balena-admin/scripts/compose up
 
 ## Web Access
 
-Once both open-balena and open-balena-admin are running, you can access the admin interface via `http://admin.<openbalena domain>` (or `http://admin.openbalena.local` if running locally).  Log in using the credentials that were used in step 2 or when your openbalena instance was initially set up.
+Once both open-balena and open-balena-admin are running, you can access the admin interface via `http://admin.<openbalena domain>` (or `http://admin.openbalena.local` if running locally).  Log in using the credentials that were used in step 2 or when your openbalena instance was initially set up.  Device dashboards can be accessed directly at `http://dashboard.<openbalena domain>/devices/<UUID>/summary`, which will require a successful login. 
 
 ## Components
 
