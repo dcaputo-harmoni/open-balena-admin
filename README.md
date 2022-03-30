@@ -90,7 +90,18 @@ If running locally, edit `/etc/hosts` or `C:\Windows\System32\Drivers\etc\hosts`
 127.0.0.1 postgrest.openbalena.local
 127.0.0.1 remote.openbalena.local
 ```
-If hosted, set up the hostnames to point to your public IP addresses for the respective containers and/or ingress controllers.
+If hosted, set up your hostnames to point to the public IP addresses of your containers as follows:
+
+- **<yourdomain.com>**: IP address / hostname of `open-balena-haproxy`
+- **api.<yourdomain.com>**: IP address / hostname of `open-balena-haproxy`
+- **registry.<yourdomain.com>**: IP address / hostname of `open-balena-haproxy`
+- **vpn.<yourdomain.com>**: IP address / hostname of `open-balena-haproxy`
+- **s3.<yourdomain.com>**: IP address / hostname of `open-balena-haproxy`
+- **tunnel.<yourdomain.com>**: IP address / hostname of `open-balena-haproxy`
+- **admin.<yourdomain.com>**: IP address / hostname of `open-balena-ui`, or `open-balena-admin-haproxy` if using K8S ingress
+- **dashboard.<yourdomain.com>**:  IP address / hostname of `open-balena-ui`, or `open-balena-admin-haproxy` if using K8S ingress
+- **postgrest.<yourdomain.com>**:  IP address / hostname of `open-balena-postgrest`, or `open-balena-admin-haproxy` if using K8S ingress
+- **remote.<yourdomain.com>**:  IP address / hostname of `open-balena-remote`, or `open-balena-admin-haproxy` if using K8S ingress
 
 6. Start open-balena
 ```sh
