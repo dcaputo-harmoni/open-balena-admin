@@ -70,6 +70,8 @@ git clone https://github.com/dcaputo-harmoni/open-balena-admin.git
 ```sh
 open-balena-admin/scripts/quickstart -j [OPENBALENA_JWT_SECRET] -v [OPENBALENA_API_VERSION]
 ```
+**Note**: If you are running on a domain other than `openbalena.local`, be sure to also add `-d [DOMAIN]` to the quickstart script.  For a full list of quickstart configuration options, run `open-balena-admin/scripts/quickstart -h`.
+
 **Note**: If you did not complete steps 1 and 2 (i.e. you have a running instance of openbalena) you need to ssh into your running instance of open-balena-api, where you will find `OPENBALENA_JWT_SECRET` via the environment variable `JSON_WEB_TOKEN_SECRET`, and `OPENBALENA_API_VERSION` as "version" within `/usr/src/app/package.json`
 
 5. Set up hostnames
@@ -88,7 +90,18 @@ If running locally, edit `/etc/hosts` or `C:\Windows\System32\Drivers\etc\hosts`
 127.0.0.1 postgrest.openbalena.local
 127.0.0.1 remote.openbalena.local
 ```
-If hosted, set up the hostnames to point to your public IP addresses for the respective containers and/or ingress controllers.
+If hosted, set up your hostnames to point to the public IP addresses of your containers as follows:
+
+- **<yourdomain.com>**: IP address / hostname of `open-balena-haproxy`
+- **api.<yourdomain.com>**: IP address / hostname of `open-balena-haproxy`
+- **registry.<yourdomain.com>**: IP address / hostname of `open-balena-haproxy`
+- **vpn.<yourdomain.com>**: IP address / hostname of `open-balena-haproxy`
+- **s3.<yourdomain.com>**: IP address / hostname of `open-balena-haproxy`
+- **tunnel.<yourdomain.com>**: IP address / hostname of `open-balena-haproxy`
+- **admin.<yourdomain.com>**: IP address / hostname of `open-balena-ui`, or `open-balena-admin-haproxy` if using K8S ingress
+- **dashboard.<yourdomain.com>**:  IP address / hostname of `open-balena-ui`, or `open-balena-admin-haproxy` if using K8S ingress
+- **postgrest.<yourdomain.com>**:  IP address / hostname of `open-balena-postgrest`, or `open-balena-admin-haproxy` if using K8S ingress
+- **remote.<yourdomain.com>**:  IP address / hostname of `open-balena-remote`, or `open-balena-admin-haproxy` if using K8S ingress
 
 6. Start open-balena
 ```sh
