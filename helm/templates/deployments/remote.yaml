@@ -76,6 +76,8 @@ spec:
         env:
         - name: BALENARC_BALENA_URL
           value: {{ .Values.global.hostname }}
+        - name: HOST_MODE
+          value: {{ .Values.global.admin_host_mode }}
 
       {{- with .Values.remote.nodeSelector  }}
       nodeSelector:

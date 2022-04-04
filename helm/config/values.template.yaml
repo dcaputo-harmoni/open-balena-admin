@@ -1,5 +1,6 @@
 global:
-  hostname:
+  hostname: ${OPENBALENA_HOST_NAME}
+  admin_host_mode: ${OPENBALENA_ADMIN_HOST_MODE}
 
 ingress:
   annotations:
@@ -23,7 +24,7 @@ ui:
     repository: harmonidcaputo/open-balena-ui
     tag: latest
     pullPolicy: Always
-  apiVersion: 
+  apiVersion: ${OPENBALENA_API_VERSION_TAG}
 
 remote:
   replicas: 1
@@ -59,10 +60,10 @@ postgrest:
     tag: latest
     pullPolicy: Always
   dbHost: openbalena-db.openbalena
-  dbUser: docker
-  dbPassword: docker
-  dbPort: 5432
-  jwtSecret: 
+  dbUser: ${OPENBALENA_DB_USER}
+  dbPassword: ${OPENBALENA_DB_PASSWORD}
+  dbPort: ${OPENBALENA_DB_PORT}
+  jwtSecret: ${OPENBALENA_JWT_SECRET}
 
 haproxy:
   controller:

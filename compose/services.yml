@@ -31,6 +31,7 @@ services:
     image: harmonidcaputo/open-balena-remote:${OPENBALENA_REMOTE_VERSION_TAG}
     environment:
       BALENARC_BALENA_URL: ${OPENBALENA_HOST_NAME}
+      HOST_MDOE: ${OPENBALENA_ADMIN_HOST_MODE}
     ports:
       - "10000:10000"
       - "10001:10001"

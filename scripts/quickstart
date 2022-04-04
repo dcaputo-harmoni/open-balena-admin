@@ -11,6 +11,7 @@ DOMAIN=openbalena.local
 DB_USER=docker
 DB_PASSWORD=docker
 DB_PORT=5432
+HOST_MODE=secure
 
 usage() {
   echo "usage: $0 [-h] [-d DOMAIN] [-U USERNAME] [-P PASSWORD] [-p PORT] -v VERSION -j JWT_SECRET"
@@ -19,13 +20,14 @@ usage() {
   echo "  -U USERNAME   the username used to log in to your openbalena db instance.  Default is 'docker'"
   echo "  -P PASSWORD   the password used to log in to your openbalena db instance.  Default is 'docker'"
   echo "  -p PORT       the port of your openbalena db instance.  Default is '5432'"
+  echo "  -i            insecure host mode (open-balena-admin services available via http instead of https)  Default is secure"
   echo "  -v VERSION    the version tag of your openbalena api instance"
   echo "  -j JWT_SECRET the JWT secret of your openbalena instance"
   echo
 }
 
 show_help=false
-while getopts ":hxdUPp:v:j:" opt; do
+while getopts ":hxdUPpi:v:j:" opt; do
   case "${opt}" in
     h) show_help=true;;
     x) set -x;;
@@ -33,6 +35,7 @@ while getopts ":hxdUPp:v:j:" opt; do
     U) DB_USER="${OPTARG}";;
     P) DB_PASSWORD="${OPTARG}";;
     p) DB_PORT="${OPTARG}";;
+    i) HOST_MODE="insecure";;
     v) VERSION="${OPTARG}";;
     j) JWT_SECRET="${OPTARG}";;
     *)

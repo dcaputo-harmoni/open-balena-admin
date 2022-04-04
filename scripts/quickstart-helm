@@ -1,0 +1,9 @@
+#!/bin/bash -e
+
+OPENBALENA_ADMIN_DIR=$(dirname "$0")/..
+
+$OPENBALENA_ADMIN_DIR/scripts/quickstart "$@"
+
+echo "==> Creating Openbalena admin Helm configuration..."
+source "${OPENBALENA_ADMIN_DIR}/config/activate";
+envsubst < "${OPENBALENA_ADMIN_DIR}/helm/config/values.template.yaml" > "${OPENBALENA_ADMIN_DIR}/helm/values.yaml"
