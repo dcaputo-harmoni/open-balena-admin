@@ -1,0 +1,83 @@
+global:
+  hostname: 
+  admin_host_mode: secure
+
+ingress:
+  annotations:
+    kubernetes.io/ingress.class: openbalena-admin-haproxy
+  http:
+    annotations: {}
+
+ui:
+  replicas: 1
+  labels: {}
+  annotations: {}
+  affinity: {}
+  resources: {}
+  nodeSelector: {}
+  service:
+    labels: {}
+    annotations: {}
+    externalIPs: []
+  sentry-dsn: ""
+  image:
+    repository: harmonidcaputo/open-balena-ui
+    tag: latest
+    pullPolicy: Always
+  apiVersion: 
+
+remote:
+  replicas: 1
+  labels: {}
+  annotations: {}
+  affinity: {}
+  resources: {}
+  nodeSelector: {}
+  service:
+    labels: {}
+    annotations: {}
+    externalIPs: []
+  sentry-dsn: ""
+  image:
+    repository: harmonidcaputo/open-balena-remote
+    tag: latest
+    pullPolicy: Always
+
+postgrest:
+  replicas: 1
+  labels: {}
+  annotations: {}
+  affinity: {}
+  resources: {}
+  nodeSelector: {}
+  service:
+    labels: {}
+    annotations: {}
+    externalIPs: []
+  sentry-dsn: ""
+  image:
+    repository: harmonidcaputo/open-balena-postgrest
+    tag: latest
+    pullPolicy: Always
+  dbHost: openbalena-db.openbalena
+  dbUser: docker
+  dbPassword: docker
+  dbPort: 5432
+  jwtSecret: 
+
+haproxy:
+  controller:
+    ingressClass: openbalena-admin-haproxy
+    ingressClassResource:
+      enabled: true
+    tcp:
+      10000: openbalena-admin/openbalena-admin-remote:10000:PROXY-V2::openbalena-admin/openbalena-admin-tls
+      10001: openbalena-admin/openbalena-admin-remote:10001:PROXY-V2::openbalena-admin/openbalena-admin-tls
+      10002: openbalena-admin/openbalena-admin-remote:10002:PROXY-V2::openbalena-admin/openbalena-admin-tls
+      10003: openbalena-admin/openbalena-admin-remote:10003:PROXY-V2::openbalena-admin/openbalena-admin-tls
+      10004: openbalena-admin/openbalena-admin-remote:10004:PROXY-V2::openbalena-admin/openbalena-admin-tls
+      10005: openbalena-admin/openbalena-admin-remote:10005:PROXY-V2::openbalena-admin/openbalena-admin-tls
+      10006: openbalena-admin/openbalena-admin-remote:10006:PROXY-V2::openbalena-admin/openbalena-admin-tls
+      10007: openbalena-admin/openbalena-admin-remote:10007:PROXY-V2::openbalena-admin/openbalena-admin-tls
+      10008: openbalena-admin/openbalena-admin-remote:10008:PROXY-V2::openbalena-admin/openbalena-admin-tls
+      10009: openbalena-admin/openbalena-admin-remote:10009:PROXY-V2::openbalena-admin/openbalena-admin-tls
