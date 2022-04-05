@@ -55,7 +55,7 @@ spec:
             add: ["SYS_ADMIN", "SYS_RESOURCE"]
         env:
         - name: PGRST_DB_URI
-          value: postgres://{{ .Values.postgrest.dbUser }}:{{ .Values.postgrest.dbPassword }}@{{ .Values.postgrest.dbHost }}:{{ .Values.global.dbPort }}/resin
+          value: postgres://{{ .Values.postgrest.dbUser }}:{{ .Values.postgrest.dbPassword }}@{{ .Values.postgrest.dbHost }}:{{ .Values.postgrest.dbPort }}/resin
         - name: PGRST_JWT_SECRET
           value: {{ .Values.postgrest.jwtSecret }}
 
