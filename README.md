@@ -68,9 +68,16 @@ git clone https://github.com/dcaputo-harmoni/open-balena-admin.git
 
 4. Configure open-blena-admin
 ```sh
-open-balena-admin/scripts/quickstart -j [OPENBALENA_JWT_SECRET] -v [OPENBALENA_API_VERSION]
+open-balena-admin/scripts/quickstart -j [OPENBALENA_JWT_SECRET] -v [OPENBALENA_API_VERSION_TAG]
 ```
 **Note**: If you are running on a domain other than `openbalena.local`, be sure to also add `-d [DOMAIN]` to the quickstart script.  For a full list of quickstart configuration options, run `open-balena-admin/scripts/quickstart -h`.
+
+If you are installing on the same host as open-balena, you can use these commands:
+```sh
+source open-balena/config/activate ; source open-balena/compose/versions
+open-balena-admin/scripts/quickstart -j $OPENBALENA_JWT_SECRET \
+	-v $OPENBALENA_API_VERSION_TAG -d $OPENBALENA_HOST_NAME
+```
 
 **Note**: If you did not complete steps 1 and 2 (i.e. you have a running instance of openbalena) you need to ssh into your running instance of open-balena-api, where you will find `OPENBALENA_JWT_SECRET` via the environment variable `JSON_WEB_TOKEN_SECRET`, and `OPENBALENA_API_VERSION` as "version" within `/usr/src/app/package.json`
 
