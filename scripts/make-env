@@ -17,7 +17,8 @@ usage() {
 
 for var in DOMAIN DB_USER DB_PASSWORD DB_PORT HOST_MODE VERSION JWT_SECRET; do
   if [ -z "${!var-}" ]; then
-    usage
+    echo "Error: variable $var is not set, aborting!" >&2
+    usage >&2
     exit 1
   fi
 done

@@ -27,7 +27,7 @@ usage() {
 }
 
 show_help=false
-while getopts ":hxdUPpi:v:j:" opt; do
+while getopts ":hxd:UPpi:v:j:" opt; do
   case "${opt}" in
     h) show_help=true;;
     x) set -x;;
@@ -65,7 +65,11 @@ echo_bold "==> Creating new configuration at: $CONFIG_DIR"
 mkdir -p "$CONFIG_DIR"
 
 echo_bold "==> Setting up environment..."
-cat >"${CONFIG_DIR}/activate" <(source "${DIR}/make-env")
+if cat >"${CONFIG_DIR}/activate.out" <(source "${DIR}/make-env"); then
+    mv "${CONFIG_DIR}/activate.out" "${CONFIG_DIR}/activate"
+else
+    exit 1
+fi
 
 echo_bold "==> Adding default compose file..."
 cp "${BASE_DIR}/compose/template.yml" "${CONFIG_DIR}/docker-compose.yml"
