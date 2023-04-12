@@ -25,6 +25,9 @@ ui:
     tag: latest
     pullPolicy: Always
   apiVersion: ${OPENBALENA_API_VERSION_TAG}
+  jwtSecret: ${OPENBALENA_JWT_SECRET}
+  s3AccessKey: ${OPENBALENA_S3_ACCESS_KEY}
+  s3SecretKey: ${OPENBALENA_S3_SECRET_KEY}
 
 remote:
   replicas: 1

@@ -25,6 +25,9 @@ ui:
     tag: latest
     pullPolicy: Always
   apiVersion: 
+  jwtSecret: 
+  s3AccessKey: 
+  s3SecretKey: 
 
 remote:
   replicas: 1

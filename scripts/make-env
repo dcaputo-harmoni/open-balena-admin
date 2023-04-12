@@ -12,10 +12,12 @@ usage() {
   echo "  HOST_MODE              Open-balena-admin host mode"
   echo "  VERSION                Openbalena API version tag"
   echo "  JWT_SECRET             Openbalena JWT secret"
+  echo "  S3_ACCESS_KEY          Openbalena S3 access key"
+  echo "  S3_SECRET_KEY          Openbalena S3 secret key"
   echo
 }
 
-for var in DOMAIN DB_USER DB_PASSWORD DB_PORT HOST_MODE VERSION JWT_SECRET; do
+for var in DOMAIN DB_USER DB_PASSWORD DB_PORT HOST_MODE VERSION JWT_SECRET S3_ACCESS_KEY S3_SECRET_KEY; do
   if [ -z "${!var-}" ]; then
     echo "Error: variable $var is not set, aborting!" >&2
     usage >&2
@@ -31,4 +33,6 @@ export OPENBALENA_DB_PORT=$DB_PORT
 export OPENBALENA_ADMIN_HOST_MODE=$HOST_MODE
 export OPENBALENA_API_VERSION_TAG=$VERSION
 export OPENBALENA_JWT_SECRET=$JWT_SECRET
+export OPENBALENA_S3_ACCESS_KEY=$S3_ACCESS_KEY
+export OPENBALENA_S3_SECRET_KEY=$S3_SECRET_KEY
 STR

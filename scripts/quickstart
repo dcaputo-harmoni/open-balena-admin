@@ -16,18 +16,20 @@ HOST_MODE=secure
 usage() {
   echo "usage: $0 [-h] [-d DOMAIN] [-U USERNAME] [-P PASSWORD] [-p PORT] -v VERSION -j JWT_SECRET"
   echo
-  echo "  -d DOMAIN     the domain that your openbalena instance was installed on. Default is 'openbalena.local'"
-  echo "  -U USERNAME   the username used to log in to your openbalena db instance.  Default is 'docker'"
-  echo "  -P PASSWORD   the password used to log in to your openbalena db instance.  Default is 'docker'"
-  echo "  -p PORT       the port of your openbalena db instance.  Default is '5432'"
-  echo "  -i            insecure host mode (open-balena-admin services available via http instead of https)  Default is secure"
-  echo "  -v VERSION    the version tag of your openbalena api instance"
-  echo "  -j JWT_SECRET the JWT secret of your openbalena instance"
+  echo "  -d DOMAIN        the domain that your openbalena instance was installed on. Default is 'openbalena.local'"
+  echo "  -U USERNAME      the username used to log in to your openbalena db instance.  Default is 'docker'"
+  echo "  -P PASSWORD      the password used to log in to your openbalena db instance.  Default is 'docker'"
+  echo "  -p PORT          the port of your openbalena db instance.  Default is '5432'"
+  echo "  -i               insecure host mode (open-balena-admin services available via http instead of https)  Default is secure"
+  echo "  -v VERSION       the version tag of your openbalena api instance"
+  echo "  -j JWT_SECRET    the JWT secret of your openbalena instance"
+  echo "  -a S3_ACCESS_KEY the S3 access key of your openbalena instance"
+  echo "  -s S3_SECRET_KEY the S3 secret key of your openbalena instance"
   echo
 }
 
 show_help=false
-while getopts ":hxd:UPpi:v:j:" opt; do
+while getopts ":hxdUPpi:v:j:a:s:" opt; do
   case "${opt}" in
     h) show_help=true;;
     x) set -x;;
@@ -38,6 +40,8 @@ while getopts ":hxd:UPpi:v:j:" opt; do
     i) HOST_MODE="insecure";;
     v) VERSION="${OPTARG}";;
     j) JWT_SECRET="${OPTARG}";;
+    a) S3_ACCESS_KEY="${OPTARG}";;
+    s) S3_SECRET_KEY="${OPTARG}";;
     *)
       echo "Invalid argument: -${OPTARG}"
       usage
@@ -47,7 +51,7 @@ while getopts ":hxd:UPpi:v:j:" opt; do
 done
 shift $((OPTIND-1))
 
-if [ -z "${VERSION}" ] || [ -z "${JWT_SECRET}" ]; then
+if [ -z "${VERSION}" ] || [ -z "${JWT_SECRET}" ]|| [ -z "${S3_ACCESS_KEY}" ]|| [ -z "${S3_SECRET_KEY}" ]; then
   usage
   exit 1
 fi
