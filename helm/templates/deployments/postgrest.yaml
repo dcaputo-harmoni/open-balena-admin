@@ -55,9 +55,15 @@ spec:
             add: ["SYS_ADMIN", "SYS_RESOURCE"]
         env:
         - name: OPENBALENA_DB_USERNAME
-          value: {{ .Values.postgrest.dbUser }}
+          valueFrom:
+            secretKeyRef:
+              name: openbalena-db-username
+              key: data
         - name: OPENBALENA_DB_PASSWORD
-          value: {{ .Values.postgrest.dbPassword }}
+          valueFrom:
+            secretKeyRef:
+              name: openbalena-db-password
+              key: data
         - name: PGRST_DB_URI
           value: postgres://$(OPENBALENA_DB_USERNAME):$(OPENBALENA_DB_PASSWORD)@{{ .Values.postgrest.dbHost }}:{{ .Values.postgrest.dbPort }}/resin
         - name: PGRST_JWT_SECRET

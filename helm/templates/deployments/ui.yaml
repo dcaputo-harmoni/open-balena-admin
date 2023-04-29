@@ -57,13 +57,22 @@ spec:
         - name: PORT
           value: "443"
         - name: OPEN_BALENA_JWT_SECRET
-          value: {{ .Values.ui.jwtSecret }}
+          valueFrom:
+            secretKeyRef:
+              name: openbalena-jwt_secret
+              key: data
         - name: OPEN_BALENA_S3_URL
           value: https://s3.{{ .Values.global.hostname }}
         - name: OPEN_BALENA_S3_ACCESS_KEY
-          value: {{ .Values.ui.s3AccessKey }}
+          valueFrom:
+            secretKeyRef:
+              name: openbalena-s3-access_key
+              key: data
         - name: OPEN_BALENA_S3_SECRET_KEY
-          value: {{ .Values.ui.s3SecretKey }}
+          valueFrom:
+            secretKeyRef:
+              name: openbalena-s3-secret_key
+              key: data
         - name: REACT_APP_OPEN_BALENA_UI_URL
           value: https://admin.{{ .Values.global.hostname }}
         - name: REACT_APP_OPEN_BALENA_POSTGREST_URL

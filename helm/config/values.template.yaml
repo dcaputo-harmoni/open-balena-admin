@@ -24,9 +24,6 @@ ui:
     tag: latest
     pullPolicy: Always
   apiVersion: ${OPENBALENA_API_VERSION_TAG}
-  jwtSecret: ${OPENBALENA_JWT_SECRET}
-  s3AccessKey: ${OPENBALENA_S3_ACCESS_KEY}
-  s3SecretKey: ${OPENBALENA_S3_SECRET_KEY}
 
 remote:
   replicas: 1
@@ -62,10 +59,14 @@ postgrest:
     tag: latest
     pullPolicy: Always
   dbHost: openbalena-db.openbalena
+  dbPort: ${OPENBALENA_DB_PORT}
+
+secrets:
   dbUser: ${OPENBALENA_DB_USER}
   dbPassword: ${OPENBALENA_DB_PASSWORD}
-  dbPort: ${OPENBALENA_DB_PORT}
   jwtSecret: ${OPENBALENA_JWT_SECRET}
+  s3AccessKey: ${OPENBALENA_S3_ACCESS_KEY}
+  s3SecretKey: ${OPENBALENA_S3_SECRET_KEY}
 
 haproxy:
   controller:

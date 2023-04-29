@@ -24,9 +24,6 @@ ui:
     tag: latest
     pullPolicy: Always
   apiVersion: 
-  jwtSecret: 
-  s3AccessKey: 
-  s3SecretKey: 
 
 remote:
   replicas: 1
@@ -62,10 +59,14 @@ postgrest:
     tag: latest
     pullPolicy: Always
   dbHost: openbalena-db.openbalena
+  dbPort: 5432
+
+secrets:
   dbUser: docker
   dbPassword: docker
-  dbPort: 5432
   jwtSecret: 
+  s3AccessKey: 
+  s3SecretKey: 
 
 haproxy:
   controller:
