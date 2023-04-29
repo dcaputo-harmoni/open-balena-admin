@@ -4,7 +4,6 @@ global:
 
 ingress:
   annotations:
-    kubernetes.io/ingress.class: openbalena-admin-haproxy
   http:
     annotations: {}
 
