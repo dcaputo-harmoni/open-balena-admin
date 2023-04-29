@@ -20,6 +20,7 @@ spec:
     - postgrest.{{ .Values.global.hostname }}
     - remote.{{ .Values.global.hostname }}
     secretName: {{ include "openbalena-admin.fullname" . }}-tls
+  ingressClassName: openbalena-admin-haproxy
   rules:
   - host: admin.{{ .Values.global.hostname }}
     http:
