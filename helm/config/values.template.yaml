@@ -62,6 +62,7 @@ postgrest:
   dbPort: ${OPENBALENA_DB_PORT}
 
 secrets:
+  create: true
   jwt:
     secret: ${OPENBALENA_JWT_SECRET}
   db:

@@ -62,6 +62,7 @@ postgrest:
   dbPort: 5432
 
 secrets:
+  create: true
   jwt:
     secret:
   db:
