@@ -69,8 +69,8 @@ secrets:
     username: docker
     password: docker
   s3:
-    accesskey:
-    secretkey:
+    access-key:
+    secret-key:
 
 haproxy:
   controller:
