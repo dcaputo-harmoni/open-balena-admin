@@ -67,12 +67,12 @@ spec:
           valueFrom:
             secretKeyRef:
               name: openbalena-s3-keys
-              key: access-key
+              key: accesskey
         - name: OPEN_BALENA_S3_SECRET_KEY
           valueFrom:
             secretKeyRef:
               name: openbalena-s3-keys
-              key: secret-key
+              key: secretkey
         - name: REACT_APP_OPEN_BALENA_UI_URL
           value: https://admin.{{ .Values.global.hostname }}
         - name: REACT_APP_OPEN_BALENA_POSTGREST_URL

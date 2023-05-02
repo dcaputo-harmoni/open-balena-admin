@@ -68,8 +68,8 @@ secrets:
     username: ${OPENBALENA_DB_USER}
     password: ${OPENBALENA_DB_PASSWORD}
   s3:
-    access-key: ${OPENBALENA_S3_ACCESS_KEY}
-    secret-key: ${OPENBALENA_S3_SECRET_KEY}
+    accesskey: ${OPENBALENA_S3_ACCESS_KEY}
+    secretkey: ${OPENBALENA_S3_SECRET_KEY}
 
 haproxy:
   controller:
