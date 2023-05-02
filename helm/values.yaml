@@ -62,11 +62,14 @@ postgrest:
   dbPort: 5432
 
 secrets:
-  dbUser: docker
-  dbPassword: docker
-  jwtSecret: 
-  s3AccessKey: 
-  s3SecretKey: 
+  jwt:
+    secret:
+  db:
+    username: docker
+    password: docker
+  s3:
+    access-key:
+    secret-key:
 
 haproxy:
   controller:

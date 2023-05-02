@@ -57,20 +57,20 @@ spec:
         - name: OPENBALENA_DB_USERNAME
           valueFrom:
             secretKeyRef:
-              name: openbalena-db-username
-              key: data
+              name: openbalena-db-creds
+              key: username
         - name: OPENBALENA_DB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: openbalena-db-password
-              key: data
+              name: openbalena-db-creds
+              key: password
         - name: PGRST_DB_URI
           value: postgres://$(OPENBALENA_DB_USERNAME):$(OPENBALENA_DB_PASSWORD)@{{ .Values.postgrest.dbHost }}:{{ .Values.postgrest.dbPort }}/resin
         - name: PGRST_JWT_SECRET
           valueFrom:
             secretKeyRef:
-              name: openbalena-jwt-secret
-              key: data
+              name: openbalena-jwt-auth
+              key: secret
 
       {{- with .Values.postgrest.nodeSelector  }}
       nodeSelector:
