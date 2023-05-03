@@ -59,7 +59,7 @@ spec:
         - name: OPEN_BALENA_JWT_SECRET
           valueFrom:
             secretKeyRef:
-              name: openbalena-jwt-auth
+              name: openbalena-api-jwt-auth
               key: secret
         - name: OPEN_BALENA_S3_URL
           value: https://s3.{{ .Values.global.hostname }}

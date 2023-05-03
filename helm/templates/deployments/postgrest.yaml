@@ -69,7 +69,7 @@ spec:
         - name: PGRST_JWT_SECRET
           valueFrom:
             secretKeyRef:
-              name: openbalena-jwt-auth
+              name: openbalena-api-jwt-auth
               key: secret
 
       {{- with .Values.postgrest.nodeSelector  }}
