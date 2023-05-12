@@ -61,7 +61,7 @@ services:
       service: component
     image: harmonidcaputo/open-balena-postgrest:${OPENBALENA_POSTGREST_VERSION_TAG}
     environment:
-      PGRST_DB_URI: postgres://${OPENBALENA_DB_USER}:${OPENBALENA_DB_PASSWORD}@db.${OPENBALENA_HOST_NAME}:${OPENBALENA_DB_PORT}/resin
+      PGRST_DB_URI: postgres://${OPENBALENA_DB_USERNAME}:${OPENBALENA_DB_PASSWORD}@db.${OPENBALENA_HOST_NAME}:${OPENBALENA_DB_PORT}/resin
       PGRST_JWT_SECRET: ${OPENBALENA_JWT_SECRET}
     ports:
       - "8000:8000"

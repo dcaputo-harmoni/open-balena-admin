@@ -2,89 +2,18 @@ global:
   hostname: ${OPENBALENA_HOST_NAME}
   admin_host_mode: ${OPENBALENA_ADMIN_HOST_MODE}
 
-ingress:
-  annotations:
-  http:
-    annotations: {}
-
 ui:
-  replicas: 1
-  labels: {}
-  annotations: {}
-  affinity: {}
-  resources: {}
-  nodeSelector: {}
-  service:
-    labels: {}
-    annotations: {}
-    externalIPs: []
-  sentry-dsn: ""
-  image:
-    repository: harmonidcaputo/open-balena-ui
-    tag: latest
-    pullPolicy: Always
   apiVersion: ${OPENBALENA_API_VERSION_TAG}
 
-remote:
-  replicas: 1
-  labels: {}
-  annotations: {}
-  affinity: {}
-  resources: {}
-  nodeSelector: {}
-  service:
-    labels: {}
-    annotations: {}
-    externalIPs: []
-  sentry-dsn: ""
-  image:
-    repository: harmonidcaputo/open-balena-remote
-    tag: latest
-    pullPolicy: Always
-
 postgrest:
-  replicas: 1
-  labels: {}
-  annotations: {}
-  affinity: {}
-  resources: {}
-  nodeSelector: {}
-  service:
-    labels: {}
-    annotations: {}
-    externalIPs: []
-  sentry-dsn: ""
-  image:
-    repository: harmonidcaputo/open-balena-postgrest
-    tag: latest
-    pullPolicy: Always
-  dbHost: openbalena-db.openbalena
   dbPort: ${OPENBALENA_DB_PORT}
 
 secrets:
-  create: true
   jwt:
     secret: ${OPENBALENA_JWT_SECRET}
   db:
-    username: ${OPENBALENA_DB_USER}
+    username: ${OPENBALENA_DB_USERNAME}
     password: ${OPENBALENA_DB_PASSWORD}
   s3:
     access-key: ${OPENBALENA_S3_ACCESS_KEY}
     secret-key: ${OPENBALENA_S3_SECRET_KEY}
-
-haproxy:
-  controller:
-    ingressClass: openbalena-admin-haproxy
-    ingressClassResource:
-      enabled: true
-    tcp:
-      10000: openbalena-admin/openbalena-admin-remote:10000:PROXY-V2::openbalena-admin/openbalena-admin-tls
-      10001: openbalena-admin/openbalena-admin-remote:10001:PROXY-V2::openbalena-admin/openbalena-admin-tls
-      10002: openbalena-admin/openbalena-admin-remote:10002:PROXY-V2::openbalena-admin/openbalena-admin-tls
-      10003: openbalena-admin/openbalena-admin-remote:10003:PROXY-V2::openbalena-admin/openbalena-admin-tls
-      10004: openbalena-admin/openbalena-admin-remote:10004:PROXY-V2::openbalena-admin/openbalena-admin-tls
-      10005: openbalena-admin/openbalena-admin-remote:10005:PROXY-V2::openbalena-admin/openbalena-admin-tls
-      10006: openbalena-admin/openbalena-admin-remote:10006:PROXY-V2::openbalena-admin/openbalena-admin-tls
-      10007: openbalena-admin/openbalena-admin-remote:10007:PROXY-V2::openbalena-admin/openbalena-admin-tls
-      10008: openbalena-admin/openbalena-admin-remote:10008:PROXY-V2::openbalena-admin/openbalena-admin-tls
-      10009: openbalena-admin/openbalena-admin-remote:10009:PROXY-V2::openbalena-admin/openbalena-admin-tls
