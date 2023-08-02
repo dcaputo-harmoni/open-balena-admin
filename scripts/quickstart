@@ -29,7 +29,7 @@ usage() {
 }
 
 show_help=false
-while getopts ":hxdUPpi:v:j:a:s:" opt; do
+while getopts ":hxid:U:P:p:v:j:a:s:" opt; do
   case "${opt}" in
     h) show_help=true;;
     x) set -x;;
