@@ -13,7 +13,8 @@ ui:
   annotations: {}
   affinity: {}
   resources: {}
-  nodeSelector: {}
+  nodeSelector:
+    kubernetes.io/arch: amd64
   service:
     labels: {}
     annotations: {}
@@ -31,7 +32,8 @@ remote:
   annotations: {}
   affinity: {}
   resources: {}
-  nodeSelector: {}
+  nodeSelector:
+    kubernetes.io/arch: amd64
   service:
     labels: {}
     annotations: {}
@@ -48,7 +50,8 @@ postgrest:
   annotations: {}
   affinity: {}
   resources: {}
-  nodeSelector: {}
+  nodeSelector:
+    kubernetes.io/arch: amd64
   service:
     labels: {}
     annotations: {}
@@ -88,3 +91,5 @@ haproxy:
       10007: openbalena-admin/openbalena-admin-remote:10007:PROXY-V2::openbalena-admin/openbalena-admin-tls
       10008: openbalena-admin/openbalena-admin-remote:10008:PROXY-V2::openbalena-admin/openbalena-admin-tls
       10009: openbalena-admin/openbalena-admin-remote:10009:PROXY-V2::openbalena-admin/openbalena-admin-tls
+    nodeSelector:
+      kubernetes.io/arch: amd64
