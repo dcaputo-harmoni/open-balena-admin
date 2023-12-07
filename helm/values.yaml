@@ -10,7 +10,8 @@ ingress:
 ui:
   replicas: 1
   labels: {}
-  annotations: {}
+  annotations:
+    reloader.stakater.com/auto: "true"
   affinity: {}
   resources: {}
   nodeSelector:
@@ -29,7 +30,8 @@ ui:
 remote:
   replicas: 1
   labels: {}
-  annotations: {}
+  annotations:
+    reloader.stakater.com/auto: "true"
   affinity: {}
   resources: {}
   nodeSelector:
@@ -47,7 +49,8 @@ remote:
 postgrest:
   replicas: 1
   labels: {}
-  annotations: {}
+  annotations:
+    reloader.stakater.com/auto: "true"
   affinity: {}
   resources: {}
   nodeSelector:
