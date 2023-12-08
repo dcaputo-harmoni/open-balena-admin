@@ -44,7 +44,7 @@ Device Dashboard (Connect - Web):
 ![Device Dashboard (Connect - Web)](/assets/screenshots/device_dashboard_4.png "Device Dashboard (Connect - Web)")
 
 ## Compatibility
-This project is compatible with `open-balena-api` v0.139.0 or newer, all the way up to the current builds (v0.190.0).  See [this project](https://github.com/dcaputo-harmoni/open-balena-helm) for a fork of bartversluijs' open-balena-helm project which has helm scripts to build a current version of `open-balena`.
+This project is compatible with `open-balena-api` v0.139.0 or newer, all the way up to the current builds.  See [this project](https://github.com/dcaputo-harmoni/open-balena-helm) which has helm scripts to build a current version of `open-balena` including `open-balena-admin` and many other additional features.
 
 ## Installation (Docker Compose)
 
@@ -128,14 +128,13 @@ Once both open-balena and open-balena-admin are running, you can access the admi
 
 The open-balena-admin package is a compilation of three separate but related projects: [open-balena-ui](https://github.com/dcaputo-harmoni/open-balena-ui), [open-balena-remote](https://github.com/dcaputo-harmoni/open-balena-remote) and [open-balena-postgrest](https://github.com/dcaputo-harmoni/open-balena-postgrest).  Take note of the instructions within each of these projects to ensure your openbalena projects are configured to utilize features of open-balena-admin (i.e. remote device access).
 
-## K8S Helm Charts
+## K8S Deployment
 
-Helm charts are included in the `/helm` folder of this repository for K8S users, however given the variability of K8S environments, detailed instructions are not provided for these.  Take a look at [this fork](https://github.com/bartversluijs/open-balena) of openbalena by bartversluijs for relevant documentation as this was the inspiration / basis for these charts.
+`open-balena-admin` has been fully integrated into the [open-balena-helm](https://github.com/dcaputo-harmoni/open-balena-helm) project.
 
 ## Limitations and Known Issues
 - User authorization is not implemented at the resource level
 
 ## Credits
 
-- Big credit to [bartversluijs](https://github.com/bartversluijs) for inspiring the helm portion of this project
 - The [ra-data-postgrest](https://github.com/raphiniert-com/ra-data-postgrest) project was instrumental in establishing the link to the open-balena database
