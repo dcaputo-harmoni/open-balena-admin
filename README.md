@@ -93,7 +93,6 @@ If running locally, edit `/etc/hosts` or `C:\Windows\System32\Drivers\etc\hosts`
 127.0.0.1 s3.openbalena.local
 127.0.0.1 tunnel.openbalena.local
 127.0.0.1 admin.openbalena.local
-127.0.0.1 dashboard.openbalena.local
 127.0.0.1 postgrest.openbalena.local
 127.0.0.1 remote.openbalena.local
 ```
@@ -106,7 +105,6 @@ If hosted, set up your hostnames to point to the public IP addresses of your con
 - **s3.<yourdomain.com>**: IP address / hostname of `open-balena-haproxy`
 - **tunnel.<yourdomain.com>**: IP address / hostname of `open-balena-haproxy`
 - **admin.<yourdomain.com>**: IP address / hostname of `open-balena-ui`, or `open-balena-admin-haproxy` if using K8S ingress
-- **dashboard.<yourdomain.com>**:  IP address / hostname of `open-balena-ui`, or `open-balena-admin-haproxy` if using K8S ingress
 - **postgrest.<yourdomain.com>**:  IP address / hostname of `open-balena-postgrest`, or `open-balena-admin-haproxy` if using K8S ingress
 - **remote.<yourdomain.com>**:  IP address / hostname of `open-balena-remote`, or `open-balena-admin-haproxy` if using K8S ingress
 
@@ -122,7 +120,7 @@ open-balena-admin/scripts/compose up
 
 ## Web Access
 
-Once both open-balena and open-balena-admin are running, you can access the admin interface via `http://admin.<openbalena domain>` (or `http://admin.openbalena.local` if running locally).  Log in using the credentials that were used in step 2 or when your openbalena instance was initially set up.  Device dashboards can be accessed directly at `http://dashboard.<openbalena domain>/devices/<UUID>/summary`, which will require a successful login. 
+Once both open-balena and open-balena-admin are running, you can access the admin interface via `http://admin.<openbalena domain>` (or `http://admin.openbalena.local` if running locally).  Log in using the credentials that were used in step 2 or when your openbalena instance was initially set up.  Device dashboards can be accessed directly at `http://admin.<openbalena domain>/devices/<UUID>/summary`. 
 
 ## Components
 
