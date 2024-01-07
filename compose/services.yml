@@ -23,8 +23,6 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - openbalena_default
-    networks:
       openbalena_default:
         aliases:
           - admin.${OPENBALENA_HOST_NAME}
@@ -49,8 +47,6 @@ services:
       - "10008:10008"
       - "10009:10009"
     networks:
-      - openbalena_default
-    networks:
       openbalena_default:
         aliases:
           - remote.${OPENBALENA_HOST_NAME}
@@ -65,8 +61,6 @@ services:
       PGRST_JWT_SECRET: ${OPENBALENA_JWT_SECRET}
     ports:
       - "8000:8000"
-    networks:
-      - openbalena_default
     networks:
       openbalena_default:
         aliases:
