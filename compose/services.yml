@@ -23,7 +23,7 @@ services:
     ports:
       - "8080:8080"
     networks:
-      openbalena_default:
+      open-balena_default:
         aliases:
           - admin.${OPENBALENA_HOST_NAME}
 
@@ -47,7 +47,7 @@ services:
       - "10008:10008"
       - "10009:10009"
     networks:
-      openbalena_default:
+      open-balena_default:
         aliases:
           - remote.${OPENBALENA_HOST_NAME}
 
@@ -62,10 +62,10 @@ services:
     ports:
       - "8000:8000"
     networks:
-      openbalena_default:
+      open-balena_default:
         aliases:
           - postgrest.${OPENBALENA_HOST_NAME}
 
 networks:
-  openbalena_default:
+  open-balena_default:
     external: true
