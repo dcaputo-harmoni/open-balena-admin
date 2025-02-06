@@ -55,11 +55,11 @@ This project is compatible with `open-balena-api` v0.139.0 or newer, all the way
 git clone https://github.com/balena-io/open-balena.git
 ```
 
-2. Configure open-balena
-```sh
-open-balena/scripts/quickstart -U balena@openbalena.local -P balena
+2. start open-balena
 ```
-**Note**: When the script is complete, take note of the values of `OPENBALENA_JWT_SECRET` `OPENBALENA_S3_ACCESS_KEY` `OPENBALENA_S3_SECRET_KEY` from `config/activate`, and `OPENBALENA_API_VERSION_TAG` from `compose/versions`
+export DNS_TLD=mydomain.com
+make up
+```
 
 3. Download open-balena-admin
 ```sh
@@ -80,7 +80,7 @@ open-balena-admin/scripts/quickstart -j $OPENBALENA_JWT_SECRET \
         -a $OPENBALENA_S3_ACCESS_KEY -s $OPENBALENA_S3_SECRET_KEY
 ```
 
-**Note**: If you did not complete steps 1 and 2 (i.e. you have a running instance of openbalena) you need to ssh into your running instance of open-balena-api, where you will find `OPENBALENA_JWT_SECRET` via the environment variable `JSON_WEB_TOKEN_SECRET`, and `OPENBALENA_API_VERSION` as "version" within `/usr/src/app/package.json`
+**Note**: If you did not complete steps 1 and 2 (i.e. you have a running instance of openbalena) you need to ssh into your running instance of open-balena-api, the file /usr/src/app/config/env will containe the values for `OPENBALENA_S3_ACCESS_KEY`(`WEBRESOURCES_S3_ACCESS_KEY`), `OPENBALENA_S3_SECRET_KEY`(`WEBRESOURCES_S3_SECRET_KEY`) and `OPENBALENA_JWT_SECRET`(`JSON_WEB_TOKEN_SECRET` the token needs to be incased in '), and `OPENBALENA_API_VERSION` as "version" within `/usr/src/app/package.json` (you need to add a leaving `v` to the value of version)
 
 5. Set up hostnames
 
